@@ -1,0 +1,7 @@
+---
+- name: Prueba de conexión
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Hacer ping a la máquina
+      ansible.builtin.ping:
