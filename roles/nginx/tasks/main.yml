@@ -1,0 +1,19 @@
+---
+# roles/nginx/tasks/main.yml
+- name: Asegurar que Nginx está instalado (Debian/Ubuntu)
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Desplegar página web personalizada (Template)
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: Reiniciar Nginx
+
+- name: Asegurar que el servicio Nginx está arrancado
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
