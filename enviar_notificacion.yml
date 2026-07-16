@@ -1,0 +1,31 @@
+---
+# enviar_notificacion.yml
+- name: Enviar reporte por correo electrónico
+  hosts: localhost # Lo ejecutamos desde el propio AAP, no necesita ir al PC anfitrión
+  gather_facts: false
+  vars:
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    correo_origen: "tu_correo@gmail.com"
+    password_app: "tu_password_de_aplicacion_aqui"
+    correo_destino: "destino@ejemplo.com"
+
+  tasks:
+    - name: Enviar email usando el módulo community.general.mail
+      community.general.mail:
+        host: "{{ smtp_host }}"
+        port: "{{ smtp_port }}"
+        username: "{{ correo_origen }}"
+        password: "{{ password_app }}"
+        to: "Administrador <{{ correo_destino }}>"
+        subject: "AAP: Despliegue de Nginx completado"
+        body: |
+          Hola,
+          
+          Este es un correo automático enviado desde tu Red Hat Ansible Automation Platform.
+          El playbook de Nginx se ejecutó correctamente y la máquina está lista.
+          
+          Un saludo,
+          Tu Bot de Ansible.
+        secure: starttls
+      delegate_to: localhost
