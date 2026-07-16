@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servidor Web Automatizado</title>
+</head>
+<body>
+    <h1>Bienvenido al servidor: {{ ansible_hostname }}</h1>
+    <p>Este servidor ha sido configurado al 100% por Ansible Automation Platform.</p>
+    <hr>
+    <h3>{{ "despliegue completado con exito" | decorar_texto }}</h3>
+</body>
+</html>
