@@ -1,0 +1,7 @@
+---
+# desplegar_web.yml
+- name: Desplegar Nginx usando Roles y Plugins
+  hosts: all
+  become: true  # CRÍTICO: Necesitamos ser root (sudo) para instalar nginx
+  roles:
+    - nginx
