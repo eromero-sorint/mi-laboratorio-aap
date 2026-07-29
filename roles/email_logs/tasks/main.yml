@@ -1,1 +1,26 @@
+---
+# roles/email_logs/tasks/main.yml
 
+- name: Leer el archivo /var/log/messages
+  ansible.builtin.slurp:
+    src: /var/log/messages
+  register: log_file
+  become: yes  # Necesario porque /var/log/messages requiere permisos de root
+
+- name: Enviar el contenido del log por correo electrónico
+  community.general.mail:
+    host: "{{ smtp_host }}"
+    port: "{{ smtp_port }}"
+    username: "{{ smtp_user }}"
+    password: "{{ smtp_password }}"
+    to: "{{ correo_destino }}"
+    from: "{{ correo_origen }}"
+    subject: "Logs del sistema - {{ ansible_hostname }}"
+    body: |
+      Timestamp de ejecución: {{ ansible_date_time.iso8601 }}
+      Hostname del servidor: {{ ansible_hostname }}
+      
+      Contenido de /var/log/messages:
+      ---------------------------------------------------------
+      {{ log_file['content'] | b64decode }}
+  delegate_to: localhost
