@@ -7,7 +7,7 @@
     smtp_host: "smtp.gmail.com"
     smtp_port: "587"
     smtp_user: "proyectostrabajopruebas@gmail.com"
-    smtp_password: "lyxm dbjs qgem blgj "  # <-- Aquí va la contraseña de 16 letras (TODO JUNTO, sin espacios)
+    smtp_password: "lyxmdbjsqgemblgj "  # <-- Aquí va la contraseña de 16 letras (TODO JUNTO, sin espacios)
     
     # --- Configuración de los correos ---
     correo_origen: "proyectostrabajopruebas@gmail.com"
