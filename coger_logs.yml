@@ -6,11 +6,11 @@
     # --- Configuración del servidor de Gmail ---
     smtp_host: "smtp.gmail.com"
     smtp_port: "587"
-    smtp_user: "@gmail.com"
-    smtp_password: "abcdefghijklmnop"  # <-- Aquí va la contraseña de 16 letras (TODO JUNTO, sin espacios)
+    smtp_user: "proyectostrabajopruebas@gmail.com"
+    smtp_password: "^9Df]30j!*'K"  # <-- Aquí va la contraseña de 16 letras (TODO JUNTO, sin espacios)
     
     # --- Configuración de los correos ---
-    correo_origen: "@gmail.com"
+    correo_origen: "proyectostrabajopruebas@gmail.com"
     correo_destino: "eromero@sorint.com"  # Puedes poner el de tu empresa para recibirlo allí
   
   roles:
