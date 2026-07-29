@@ -13,6 +13,7 @@
     port: "{{ smtp_port }}"
     username: "{{ smtp_user }}"
     password: "{{ smtp_password }}"
+    secure: starttls
     to: "{{ correo_destino }}"
     from: "{{ correo_origen }}"
     subject: "Logs del sistema - {{ ansible_hostname }}"
