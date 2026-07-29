@@ -3,12 +3,15 @@
   hosts: all
   become: yes
   vars:
-    smtp_host: "smtp.mailtrap.io"      # O smtp.gmail.com
-    smtp_port: "2525"                  # O 587
-    smtp_user: "tu_usuario"
-    smtp_password: "tu_password_de_aplicacion"
-    correo_origen: "ansible@tuempresa.com"
-    correo_destino: "admin@tuempresa.com"
+    # --- Configuración del servidor de Gmail ---
+    smtp_host: "smtp.gmail.com"
+    smtp_port: "587"
+    smtp_user: "@gmail.com"
+    smtp_password: "abcdefghijklmnop"  # <-- Aquí va la contraseña de 16 letras (TODO JUNTO, sin espacios)
+    
+    # --- Configuración de los correos ---
+    correo_origen: "@gmail.com"
+    correo_destino: "eromero@sorint.com"  # Puedes poner el de tu empresa para recibirlo allí
   
   roles:
     - email_logs
