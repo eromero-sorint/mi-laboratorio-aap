@@ -1,0 +1,7 @@
+---
+- name: Desplegar y configurar base de datos MariaDB
+  hosts: all
+  become: yes  # Necesitamos permisos de root para instalar paquetes
+  
+  roles:
+    - database
