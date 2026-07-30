@@ -1,1 +1,40 @@
+---
+- name: Instalar MariaDB y dependencias de Python
+  ansible.builtin.apt:
+    name:
+      - mariadb-server
+      - python3-pymysql  # Requerido por Ansible para ejecutar comandos SQL
+    state: present
+    update_cache: yes
 
+- name: Asegurar que el servicio MariaDB está iniciado y habilitado
+  ansible.builtin.service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Crear la base de datos 'demo_db'
+  community.mysql.mysql_db:
+    name: demo_db
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Crear la tabla de informacion del sistema
+  community.mysql.mysql_query:
+    login_db: demo_db
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    query: >
+      CREATE TABLE IF NOT EXISTS system_info (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        hostname VARCHAR(255),
+        os_version VARCHAR(255),
+        execution_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+
+- name: Insertar datos iniciales en la tabla para validacion
+  community.mysql.mysql_query:
+    login_db: demo_db
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    query: >
+      INSERT INTO system_info (hostname, os_version)
+      VALUES ('{{ ansible_hostname }}', '{{ ansible_distribution }} {{ ansible_distribution_version }}')
