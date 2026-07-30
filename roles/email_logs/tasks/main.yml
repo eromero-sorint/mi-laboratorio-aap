@@ -3,7 +3,7 @@
 
 - name: Leer el archivo /var/log/messages
   ansible.builtin.slurp:
-    src: /var/log/messages
+    src: /var/log/syslog
   register: log_file
   become: yes  # Necesario porque /var/log/messages requiere permisos de root
 
